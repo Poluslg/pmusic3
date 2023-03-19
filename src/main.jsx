@@ -13,6 +13,8 @@ import Forgotpassword from "./Components/Forgotpassword";
 import Errorpage from "./Components/Errorpage";
 import Profilesetting from "./Components/Profilesetting";
 import Loginprofile from "./Components/Loginprofile";
+import Playlist from "./Components/Playlist";
+import Library from "./Components/Library";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +61,14 @@ const router = createBrowserRouter([
     path: "/loginprofile",
     element: <Loginprofile />,
   },
+  {
+    path: "/playlist",
+    element: <Playlist />,
+  },
+  {
+    path: "/library",
+    element: <Library />,
+  }
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

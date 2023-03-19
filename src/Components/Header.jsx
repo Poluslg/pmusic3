@@ -14,8 +14,8 @@ const user = {
 const Header = () => {
   const navigation = [
     { name: "Dashboard", href: "/afterlogin", current: true },
-    { name: "Your Library", href: "#", current: false },
-    { name: "Create Playlist", href: "#", current: false },
+    { name: "Your Library", href: "/library", current: false },
+    { name: "Create Playlist", href: "/playlist", current: false },
   ];
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -34,12 +34,12 @@ const Header = () => {
       get(child(dbRef, `users/${userId}`))
         .then((snapshot) => {
           if (snapshot.exists()) {
-           
+
             const val = snapshot.val();
             user.name = val.usename;
             user.email = val.email;
           } else {
-            
+
           }
         })
         .catch((error) => {
@@ -60,7 +60,7 @@ const Header = () => {
     navigate("/login");
   }
   return (
-    <Disclosure as="nav" className="bg-gray-500 text-white ">
+    <Disclosure as="nav" className="bg-slate-500 text-white ">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -108,29 +108,8 @@ const Header = () => {
                     ))}
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
 
-          <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pt-2 pb-3">
-              {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                    "block rounded-md px-3 py-2 text-base font-medium"
-                  )}
-                  aria-current={item.current ? "page" : undefined}
-                >
-                  {item.name}
-                </Disclosure.Button>
-                
-              ))}
+              </div>
               <Menu as="div" className="relative ml-3">
                 <div>
                   <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -181,17 +160,27 @@ const Header = () => {
                 </Transition>
               </Menu>
             </div>
-            
-          </Disclosure.Panel>
-          
-          <div className="hidden md:block">
-            <div className="ml-4 flex items-center md:ml-6">
-              
-
-              {/* Profile dropdown */}
-              
-            </div>
           </div>
+          <Disclosure.Panel className="sm:hidden">
+            <div className="space-y-1 px-2 pt-2 pb-3">
+              {navigation.map((item) => (
+                <Disclosure.Button
+                  key={item.name}
+                  as="a"
+                  href={item.href}
+                  className={classNames(
+                    item.current
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    "block rounded-md px-3 py-2 text-base font-medium"
+                  )}
+                  aria-current={item.current ? "page" : undefined}
+                >
+                  {item.name}
+                </Disclosure.Button>
+              ))}
+            </div>
+          </Disclosure.Panel>
         </>
       )}
     </Disclosure>
