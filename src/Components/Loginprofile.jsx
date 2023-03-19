@@ -36,7 +36,7 @@ export default function Loginprofile() {
           if (snapshot.exists()) {
             console.log(snapshot.val());
             const val = snapshot.val();
-            user.name = val.firstName;
+            user.name = val.Username;
             user.email = val.email;
           } else {
             console.log("No data available");
