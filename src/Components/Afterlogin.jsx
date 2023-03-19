@@ -10,11 +10,10 @@ const user = {
   imageUrl: "./defaultprofile.png",
 };
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
+  { name: "Dashboard", href: "/afterlogin", current: true },
   { name: "Your Library", href: "#", current: false },
   { name: "Create Playlist", href: "#", current: false },
-  // { name: "Calendar", href: "#", current: false },
-  // { name: "Reports", href: "#", current: false },
+  
 ];
 
 function classNames(...classes) {
@@ -115,7 +114,7 @@ export default function Afterlogin() {
                             <img
                               className="h-8 w-8 rounded-full"
                               src={user.imageUrl}
-                              alt=""
+                              alt="userphoto"
                             />
                           </Menu.Button>
                         </div>
@@ -131,7 +130,7 @@ export default function Afterlogin() {
                           <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <Menu.Item>
                               <Link
-                                to="#"
+                                to="/loginprofile"
                                 className="block px-4 py-2 text-sm text-gray-700"
                               >
                                 Your Profile
@@ -207,7 +206,7 @@ export default function Afterlogin() {
                           <img
                             className="h-8 w-8 rounded-full"
                             src={user.imageUrl}
-                            alt=""
+                            alt="userimage"
                           />
                         </Menu.Button>
                       </div>
@@ -223,7 +222,7 @@ export default function Afterlogin() {
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white left-0 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ">
                           <Menu.Item>
                             <Link
-                              to="#"
+                              to="/loginprofile"
                               className="block px-4 py-2 text-sm text-gray-700"
                             >
                               Your Profile

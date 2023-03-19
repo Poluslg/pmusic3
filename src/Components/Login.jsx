@@ -171,10 +171,10 @@ export default function Login() {
               Sign in
             </button>
             <div className="btnac">
-              <button type="submit" onClick={newac} className="newac">
+              <button type="submit" onClick={newac} className="group relative flex w-full justify-center rounded-md border  bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 Create a new Account
               </button>
-              <button type="submit" onClick={cancel} className="cancel">
+              <button type="submit" onClick={cancel} className="group relative flex w-full justify-center rounded-md border  bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 Cancel
               </button>
             </div>
