@@ -1,9 +1,9 @@
-import { Fragment, useEffect } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { useNavigate, Link } from "react-router-dom";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import {  useEffect } from "react";
+
+import { useNavigate} from "react-router-dom";
 import { getDatabase, ref, child, get } from "firebase/database";
 import Header from "./Header";
+
 
 const user = {
   name: "",
@@ -60,10 +60,13 @@ export default function Afterlogin() {
     localStorage.removeItem("uid");
     navigate("/login");
   }
+
+ 
+ 
   return (
     <>
       <Header/>
-      <div className="min-h-full">
+      <div className="min-h-full text-center ">
         <header className="bg-white shadow">
           <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
@@ -74,11 +77,26 @@ export default function Afterlogin() {
         <main>
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
             <div>
-              <h6>Wellcome to PMusic</h6>
+              <h6>Welcome to PMusic</h6>
             </div>
           </div>
         </main>
       </div>
+     <div className="afcontainer">
+      <h1>Best of NSC</h1>
+      <div className="songlis"></div>
+      <div className="songbanner"></div>
+     </div>
+     <div className="afbutton">
+        <input type="range" name="range" id="myProgressBar" min="0" max="100" />
+       
+        <div className="aficons">        
+        <img  src="./skip-backward-circle.svg" alt="play"  />
+        <img src="./play-circle.svg" alt="play"  />
+        <img src="./fast-forward-circle.svg" alt="play"  />
+        </div>
+     </div>
+ 
     </>
   );
 }

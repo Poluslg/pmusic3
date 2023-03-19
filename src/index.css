@@ -411,3 +411,37 @@ h3.text-base.font-semibold.leading-6.text-gray-900 {
 .devsite-breadcrumb-list a:hover {
   text-decoration: underline;
 }
+/* .................................................................... */
+/* ..................................Start of afterlogin.................................. */
+.afcontainer{
+  min-height: 64.2vh;
+}
+.afbutton{
+  position: static;
+  display: flex;
+  height: 120px;
+  background-color: transparent;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+.aficons{
+  display:flex;
+  margin: 12px 0;
+  height: 100px;
+  width: 100px;
+ 
+}
+.aficons img {
+ 
+  cursor: pointer;
+  padding: 0px 5px 0px 0;
+}
+#myProgressBar{
+  width: 80vh;
+  
+}
+
+/* ..................................End of Afterlogin.................................. */

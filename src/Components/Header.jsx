@@ -5,10 +5,11 @@ import { Fragment, useEffect } from "react";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { useNavigate, Link } from "react-router-dom";
 
+
 const user = {
   name: "",
   email: " ",
-  imageUrl: "./defaultprofile.png",
+  imageUrl: "./person.svg",
 };
 
 const Header = () => {
@@ -60,14 +61,14 @@ const Header = () => {
     navigate("/login");
   }
   return (
-    <Disclosure as="nav" className="bg-slate-500 text-white ">
+    <Disclosure as="nav" className="bg-cyan-500 text-white ">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-cyan-400 hover:bg-cyan-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -97,8 +98,8 @@ const Header = () => {
                         href={item.href}
                         className={classNames(
                           item.current
-                            ? "bg-gray-90 text-white"
-                            : "text-gray-300 hover:bg-gray-500 hover:text-white",
+                            ? "bg-cyan-90 text-white"
+                            : "text-gray-300 hover:bg-sky-800 hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
@@ -115,7 +116,7 @@ const Header = () => {
                   <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                     <span className="sr-only">Open user menu</span>
                     <img
-                      className="h-8 w-8 rounded-full"
+                      className="h-8 w-8 rounded-full bg-cyan-500"
                       src={user.imageUrl}
                       alt="userphoto"
                     />
