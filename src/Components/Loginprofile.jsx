@@ -10,9 +10,9 @@ const user = {
   imageUrl: "./defaultprofile.png",
 };
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Your Library", href: "#", current: false },
-  { name: "Create Playlist", href: "#", current: false },
+  // { name: "Dashboard", href: "/afterlogin", current: true },
+  // { name: "Your Library", href: "#", current: false },
+  // { name: "Create Playlist", href: "#", current: false }
 ];
 
 function classNames(...classes) {
@@ -34,12 +34,12 @@ export default function Loginprofile() {
       get(child(dbRef, `users/${userId}`))
         .then((snapshot) => {
           if (snapshot.exists()) {
-            console.log(snapshot.val());
+            // console.log(snapshot.val());
             const val = snapshot.val();
             user.name = val.Username;
             user.email = val.email;
           } else {
-            console.log("No data available");
+            // console.log("No data available");
           }
         })
         .catch((error) => {

@@ -16,14 +16,14 @@ export default function Newac() {
 
   const register = (e) => {
     e.preventDefault();
-    console.log();
+    // console.log();
     const email = inputEmail.current.value;
     const password = inputPassword.current.value;
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
+        // console.log(user);
         writeUserData(user.uid);
         // postData();
       })

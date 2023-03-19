@@ -1,28 +1,26 @@
-
-import { Disclosure} from '@headlessui/react'
-import { Bars3Icon,  XMarkIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
-
+import { Disclosure } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 
 const navigation = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'About', href: '/about', current: false },
-  { name: 'Contact', href: '/contact', current: false },
-  {name:'Login',href:'/login',current:false}
- 
-]
+  { name: "Home", href: "/", current: true },
+  { name: "About", href: "/about", current: false },
+  { name: "Contact", href: "/contact", current: false },
+  { name: "Login", href: "/login", current: false },
+];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Example() {
-  const [darkMode, ] = useState(false);
+  const [darkMode] = useState(false);
 
- 
-  
   return (
-    <Disclosure as="nav" className={darkMode ? "bg-gray-500 text-white" : "bg-indigo-500"}>
+    <Disclosure
+      as="nav"
+      className={darkMode ? "bg-gray-500 text-white" : "bg-indigo-500"}
+    >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -44,27 +42,26 @@ export default function Example() {
                     className="block h-8 w-auto lg:hidden"
                     src="/favicon.ico"
                     alt="PMusic"
-                   
                   />
                   <img
                     className="hidden h-8 w-auto lg:block"
                     src="/favicon.ico"
                     alt="PMusic"
-                
                   />
                 </div>
                 <div className="hidden sm:ml-4 sm:block">
                   <div className="space-y-1 px-2 pt-2 pb-3">
-                  
                     {navigation.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'bg-gray-90 text-white' : 'text-gray-300 hover:bg-gray-500 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium'
+                          item.current
+                            ? "bg-gray-90 text-white"
+                            : "text-gray-300 hover:bg-gray-500 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
                         )}
-                        aria-current={item.current ? 'page' : undefined}
+                        aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
                       </a>
@@ -72,12 +69,6 @@ export default function Example() {
                   </div>
                 </div>
               </div>
-              {/* <div className="dark-mode-toggle12">
-                <div className="form-check form-switch">
-                <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked={darkMode} onChange={toggleDarkMode} />
-                <label className="form-check-label" htmlFor="flexSwitchCheckDefault">{darkMode ? "Dark Mode" : "Light Mode"}</label>
-              </div>
-            </div> */}
             </div>
           </div>
 
@@ -89,10 +80,12 @@ export default function Example() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium'
+                    item.current
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    "block rounded-md px-3 py-2 text-base font-medium"
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>
@@ -102,5 +95,5 @@ export default function Example() {
         </>
       )}
     </Disclosure>
-  )
+  );
 }
