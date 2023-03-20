@@ -1,6 +1,4 @@
-import {  useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { getDatabase, ref, child, get } from "firebase/database";
+
 import Header from "./Header";
 
 
@@ -8,45 +6,7 @@ import Header from "./Header";
 
 
 export default function Loginprofile() {
-  const dbRef = ref(getDatabase());
-  const navigate = useNavigate();
-  useEffect(() => {
-    const getStoredData = async () => {
-      const uid = await localStorage.getItem("uid");
-      if (uid && uid.length) {
-        getUserData(uid);
-      }
-    };
 
-    const getUserData = (userId) => {
-      get(child(dbRef, `users/${userId}`))
-        .then((snapshot) => {
-          if (snapshot.exists()) {
-            // console.log(snapshot.val());
-            const val = snapshot.val();
-            user.name = val.Username;
-            user.email = val.email;
-          } else {
-            // console.log("No data available");
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
-
-    if (!localStorage.getItem("token")) {
-      navigate("/login");
-    } else {
-      getStoredData();
-    }
-  }, [dbRef, navigate]);
-
-  function logOut() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("uid");
-    navigate("/login");
-  }
   return (
     <>
     <Header/>

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { useRef,useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
 import { app } from "../firebase";
@@ -13,6 +13,7 @@ export default function Newac() {
   const inputNumber = useRef(null);
   const inputPassword = useRef(null);
   const inputUserName = useRef(null);
+  const [error, seterror] = useState("");
 
   const register = (e) => {
     e.preventDefault();
@@ -27,9 +28,12 @@ export default function Newac() {
         writeUserData(user.uid);
         // postData();
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        alert(errorCode);
+        .catch((error) => {
+          if (error.code === "auth/email-already-in-use") {
+            seterror("Account already exists !");}
+            else {
+              seterror(error.code);
+            }
       });
   };
 
@@ -54,6 +58,9 @@ export default function Newac() {
       <div className="hidden sm:block" aria-hidden="true">
         <div className="py-5">
           <div className="border-t border-gray-200" />
+          <div className="nerror">
+            {error}
+          </div>
         </div>
       </div>
 

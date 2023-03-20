@@ -13,7 +13,7 @@ const user = {
 
 const Header = () => {
   const navigation = [
-    { name: "Dashboard", href: "/afterlogin" },
+    { name: "Home", href: "/afterlogin" },
     { name: "Your Library", href: "/library" },
     { name: "Create Playlist", href: "/playlist" },
   ];

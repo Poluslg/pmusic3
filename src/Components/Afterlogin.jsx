@@ -1,102 +1,104 @@
-import {  useEffect } from "react";
-
-import { useNavigate} from "react-router-dom";
-import { getDatabase, ref, child, get } from "firebase/database";
+import React, { useEffect, useState } from 'react'
 import Header from "./Header";
+import Player from "./Player"
 
 
-const user = {
-  name: "",
-  email: " ",
-  imageUrl: "./defaultprofile.png",
-};
-const navigation = [
-  // { name: "Dashboard", href: "/afterlogin", current: true },
-  // { name: "Your Library", href: "#", current: false },
-  // { name: "Create Playlist", href: "#", current: false },
-];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
-export default function Afterlogin() {
-  const dbRef = ref(getDatabase());
-  const navigate = useNavigate();
-  useEffect(() => {
-    const getStoredData = async () => {
-      const uid = await localStorage.getItem("uid");
-      if (uid && uid.length) {
-        getUserData(uid);
-      }
-    };
+function Afterlogin() {
+  
 
-    const getUserData = (userId) => {
-      get(child(dbRef, `users/${userId}`))
-        .then((snapshot) => {
-          if (snapshot.exists()) {
-            // console.log(snapshot.val());
-            const val = snapshot.val();
-            user.name = val.usename;
-            user.email = val.email;
-          } else {
-            // console.log("No data available");
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
-
-    if (!localStorage.getItem("token")) {
-      navigate("/login");
-    } else {
-      getStoredData();
+  const [songs] = useState([
+    {
+      title: "NCS 1",
+      artis: "NCS",
+      img_src: "./rttet.gif",
+      src: "https://firebasestorage.googleapis.com/v0/b/pmusicplayer-dd673.appspot.com/o/songs%2F1.mp3?alt=media&token=e9e0d9c5-f6ac-4e82-8fb6-6f52aa93a78c"
+    },
+    {
+      title: "NCS 2",
+      artis: "NCS",
+      img_src: "./rttet.gif ",
+      src: "https://firebasestorage.googleapis.com/v0/b/pmusicplayer-dd673.appspot.com/o/songs%2F2.mp3?alt=media&token=c21eddbd-c613-4763-bbb2-09b7c5344cb0"
+    },
+    {
+      title: "NCS 3",
+      artis: "NCS",
+      img_src: "./rttet.gif ",
+      src: "https://firebasestorage.googleapis.com/v0/b/pmusicplayer-dd673.appspot.com/o/songs%2F3.mp3?alt=media&token=4c92247e-a958-48cf-918e-8c981ad928de"
+    },
+    {
+      title: "NCS 4 ",
+      artis: "NCS",
+      img_src: "./rttet.gif ",
+      src: "https://firebasestorage.googleapis.com/v0/b/pmusicplayer-dd673.appspot.com/o/songs%2F4.mp3?alt=media&token=b1fc6c17-0bfe-47d4-b8b8-e43a79cd9fdb"
+    },
+    {
+      title: "NCS 5",
+      artis: "NCS",
+      img_src: "./rttet.gif ",
+      src: "https://firebasestorage.googleapis.com/v0/b/pmusicplayer-dd673.appspot.com/o/songs%2F5.mp3?alt=media&token=d1cb5263-8a35-4d34-83c0-80258f1ed5bc"
+    },
+    {
+      title: "NCS 6",
+      artis: "NCS",
+      img_src: "./rttet.gif ",
+      src: "https://firebasestorage.googleapis.com/v0/b/pmusicplayer-dd673.appspot.com/o/songs%2F6.mp3?alt=media&token=52e22111-2801-46bf-ac46-c0914678fce2"
+    },
+    {
+      title: "NCS 7",
+      artis: "NCS",
+      img_src: "./rttet.gif ",
+      src: "https://firebasestorage.googleapis.com/v0/b/pmusicplayer-dd673.appspot.com/o/songs%2F7.mp3?alt=media&token=021deb76-e143-49fd-86e0-607a8c18e9d1"
+    },
+    {
+      title: "NCS 8",
+      artis: "NCS",
+      img_src: "./rttet.gif ",
+      src: "https://firebasestorage.googleapis.com/v0/b/pmusicplayer-dd673.appspot.com/o/songs%2F8.mp3?alt=media&token=04817aed-6d7f-40b2-8602-7e0b31d92a88"
+    },
+    {
+      title: "NCS 9",
+      artis: "NCS",
+      img_src: "./rttet.gif ",
+      src: "https://firebasestorage.googleapis.com/v0/b/pmusicplayer-dd673.appspot.com/o/songs%2F9.mp3?alt=media&token=7083024e-978d-4580-9ed1-69a44ba683f2"
+    },
+    {
+      title: "NCS 10",
+      artis: "NCS",
+      img_src: " ./rttet.gif",
+      src: "https://firebasestorage.googleapis.com/v0/b/pmusicplayer-dd673.appspot.com/o/songs%2F10.mp3?alt=media&token=1961e559-80e3-4578-ab0c-d025a9314ce6"
     }
-  }, [dbRef, navigate]);
+  ])
 
-  function logOut() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("uid");
-    navigate("/login");
-  }
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const [nextSongIndex, setNextSongIndex] = useState(0);
 
- 
- 
+  useEffect(() => {
+    setNextSongIndex(() => {
+      if (currentSongIndex + 1 > songs.length - 1) {
+        return 0;
+      } else {
+        return currentSongIndex + 1;
+      }
+    });
+  }, [currentSongIndex, songs.length]);
+
   return (
+
     <>
-      <Header/>
-      <div className="min-h-full text-center ">
-        <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-              Dashboard
-            </h1>
-          </div>
-        </header>
-        <main>
-          <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-            <div>
-              <h6>Welcome to PMusic</h6>
-            </div>
-          </div>
-        </main>
+      <Header />
+      <div className="App">
+        <Player
+          currentSongIndex={currentSongIndex}
+          setCurrentSongIndex={setCurrentSongIndex}
+          nextSongIndex={nextSongIndex}
+          songs={songs}
+        />
       </div>
-     <div className="afcontainer">
-      <h1>Best of NSC</h1>
-      <div className="songlis"></div>
-      <div className="songbanner"></div>
-     </div>
-     <div className="afbutton">
-        <input type="range" name="range" id="myProgressBar" min="0" max="100" />
-       
-        <div className="aficons">        
-        <img  src="./skip-backward-circle.svg" alt="play"  />
-        <img src="./play-circle.svg" alt="play"  />
-        <img src="./fast-forward-circle.svg" alt="play"  />
-        </div>
-     </div>
- 
     </>
   );
 }
+
+
+export default Afterlogin

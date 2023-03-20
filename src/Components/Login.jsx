@@ -18,7 +18,6 @@ export default function Login() {
         const user = userCredential.user;
         localStorage.setItem("token", user.accessToken);
         localStorage.setItem("uid", user.uid);
-        alert("wellcome to PMusic");
         navigate("/afterlogin");
       })
       .catch((error) => {

@@ -13,6 +13,14 @@ code {
 }
 
 /* ....................This is for Newac css................................ */
+.nerror {
+  text-align: center;
+  color: red;
+  font-size: 21px;
+  font-family: cursive;
+  font-weight: bold;
+}
+
 .btnac {
   display: flex;
   gap: 40px;
@@ -263,6 +271,7 @@ h3.text-base.font-semibold.leading-6.text-gray-900 {
 
 /* Mobile */
 @media screen and (max-width: 639px) {
+
   .nemailinput,
   .npasswordinput {
     width: 90vw;
@@ -310,7 +319,6 @@ h3.text-base.font-semibold.leading-6.text-gray-900 {
 }
 
 .lgor::before {
-  content: "OR";
   display: inline-block;
   position: relative;
   top: -0.7em;
@@ -386,39 +394,179 @@ h3.text-base.font-semibold.leading-6.text-gray-900 {
 .devsite-breadcrumb-list a:hover {
   text-decoration: underline;
 }
+
 /* .................................................................... */
 /* ..................................Start of afterlogin.................................. */
-.afcontainer {
-  min-height: 64.2vh;
-}
-.afbutton {
-  position: static;
+.App {
   display: flex;
-  height: 120px;
-  background-color: transparent;
-  color: white;
-  justify-content: center;
   align-items: center;
-  flex-direction: column;
+  justify-content: center;
+  min-height: 75vh;
+  width: 100%;
 }
-.aficons {
+
+.c-player {
+  display: block;
+  background-image: linear-gradient(to bottom, violet, indigo);
+  margin: 0px auto;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: inset -6px -6px 12px rgba(0, 0, 0, 0.8),
+    inset 6px 6px 12px rgba(255, 255, 255, 0.4);
+}
+
+.c-player>h4 {
+  color: #fff;
+  font-size: 19px;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-align: center;
+}
+
+.c-player>p {
+  color: #aaa;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.c-player>p span {
+  font-weight: 400;
+  width: fit-content;
+}
+
+.c-player--details .details-img {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.c-player--details .details-img img {
+  display: block;
+  margin: 50px auto;
+  object-fit: contain;
+  width: 100%;
+  max-width: 250px;
+  border-radius: 50%;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.8),
+    -6px -6px 12px rgba(255, 255, 255, 0.4);
+}
+
+.c-player--details .details-img:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  right: -25px;
+  bottom: -25px;
+  border-radius: 50%;
+  border: 3px dashed rgba(255, 206, 0, 1);
+}
+
+.c-player--details .details-title {
+  color: #eee;
+  font-size: 28px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+    -2px -2px 4px rgba(255, 255, 255, 0.4);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.c-player--details .details-artist {
+  color: #aaa;
+  font-size: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+    -2px -2px 4px rgba(255, 255, 255, 0.4);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.c-player--controls {
   display: flex;
-  margin: 12px 0;
-  height: 100px;
-  width: 100px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
 }
-.aficons img {
+
+.c-player--controls .play-btn {
+  display: flex;
+  margin: 0 30px;
+  padding: 20px;
+  border-radius: 50%;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8),
+    -4px -4px 10px rgba(255, 255, 255, 0.4),
+    inset -4px -4px 10px rgba(0, 0, 0, 0.4),
+    inset 4px 4px 10px rgba(255, 255, 255, 0.4);
+  border: none;
+  outline: none;
+  background-color: #ffce00;
+  color: #fff;
+  font-size: 24px;
   cursor: pointer;
-  padding: 0px 5px 0px 0;
 }
-#myProgressBar {
-  width: 80vh;
+
+.c-player--controls .play-btn:hover {
+  color: #ffce00;
+  background-color: inherit;
 }
+
+.c-player--audio {
+  margin-top: -20px;
+  margin-bottom: 5px;
+  outline-width: 0;
+  opacity: 0;
+}
+
+.c-player--controls .skip-btn {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #888;
+  font-size: 18px;
+}
+
+.c-player--controls .skip-btn:hover {
+  transition: 0.5s ease-in-out;
+  transform: scale(1.1);
+  color: white;
+  background-color: inherit;
+}
+
+audio::-webkit-media-controls-play-button {
+  display: none;
+}
+
+.details_img {
+  width: 22rem;
+  align-items: center;
+  padding-top: 1rem;
+  margin-left: 33rem;
+}
+
+.details_title {
+  text-align: center;
+  font-size: 3rem;
+  font-family: serif;
+  color: white;
+}
+
+.details-artis {
+  text-align: center;
+  font-size: 19px;
+  font-family: serif;
+  color: #6df7c4;
+  padding-bottom: 13px;
+}
+
 @media screen and (max-width: 639px) {
-  #myProgressBar {
-    width: 40vh;
+  .details_img {
+    width: 150px;
+    position: static;
   }
+
 }
+
 
 /* ..................................End of Afterlogin.................................. */
-
