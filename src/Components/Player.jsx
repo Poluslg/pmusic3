@@ -1,10 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import Songcontrols from "./Songcontrols"
 import Songdetails from "./Songdetails"
+import VolumeControl from "./VolumeControl";
 
 function Player(props) {
   const audioEl = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [ismuteSong, setIsMuteSong] = useState(false); // corrected typo in state variable name
+  const [volume, setVolume] = useState(50);
 
   useEffect(() => {
     if (isPlaying) {
@@ -13,6 +16,14 @@ function Player(props) {
       audioEl.current.pause();
     }
   });
+
+  useEffect(() => {
+    if (ismuteSong) {
+      audioEl.current.muted = true; // corrected method name for muting
+    } else {
+      audioEl.current.muted = false; // corrected method name for unmuting
+    }
+  },)
 
   const SkipSong = (forwards = true) => {
     if (forwards) {
@@ -40,6 +51,10 @@ function Player(props) {
     }
   };
 
+
+
+
+
   return (
     <div className="c-player">
       <h4>Playing now</h4>
@@ -48,6 +63,8 @@ function Player(props) {
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
         SkipSong={SkipSong}
+        ismuteSong={ismuteSong}
+        setIsMuteSong={setIsMuteSong}
       />
       <audio
         className="c-player--audio"
@@ -62,6 +79,7 @@ function Player(props) {
           {props.songs[props.nextSongIndex].artist}
         </span>
       </p>
+
     </div>
   );
 }
