@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
@@ -139,12 +140,12 @@ export default function Login() {
             </div>
 
             <div className="text-sm">
-              <a
+              <Link
                 href="/forgotpassword"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
               >
                 Forgot your password?
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -171,10 +172,18 @@ export default function Login() {
               Sign in
             </button>
             <div className="btnac">
-              <button type="submit" onClick={newac} className="group relative flex w-full justify-center rounded-md border  bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              <button
+                type="submit"
+                onClick={newac}
+                className="group relative flex w-full justify-center rounded-md border  bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
                 Create a new Account
               </button>
-              <button type="submit" onClick={cancel} className="group relative flex w-full justify-center rounded-md border  bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              <button
+                type="submit"
+                onClick={cancel}
+                className="group relative flex w-full justify-center rounded-md border  bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
                 Cancel
               </button>
             </div>

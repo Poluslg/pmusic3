@@ -1,10 +1,9 @@
 import React from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment, useEffect } from "react";
 import { getDatabase, ref, child, get } from "firebase/database";
-import { useNavigate, Link } from "react-router-dom";
-
+import { useNavigate, Link, NavLink } from "react-router-dom";
 
 const user = {
   name: "",
@@ -14,13 +13,11 @@ const user = {
 
 const Header = () => {
   const navigation = [
-    { name: "Dashboard", href: "/afterlogin", current: true },
-    { name: "Your Library", href: "/library", current: false },
-    { name: "Create Playlist", href: "/playlist", current: false },
+    { name: "Dashboard", href: "/afterlogin" },
+    { name: "Your Library", href: "/library" },
+    { name: "Create Playlist", href: "/playlist" },
   ];
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-  }
+
   const dbRef = ref(getDatabase());
   const navigate = useNavigate();
   useEffect(() => {
@@ -35,12 +32,10 @@ const Header = () => {
       get(child(dbRef, `users/${userId}`))
         .then((snapshot) => {
           if (snapshot.exists()) {
-
             const val = snapshot.val();
             user.name = val.usename;
             user.email = val.email;
           } else {
-
           }
         })
         .catch((error) => {
@@ -93,23 +88,20 @@ const Header = () => {
                 <div className="hidden sm:ml-4 sm:block">
                   <div className="space-y-1 px-2 pt-2 pb-3">
                     {navigation.map((item) => (
-                      <a
+                      <NavLink
                         key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-cyan-90 text-white"
-                            : "text-gray-300 hover:bg-sky-800 hover:text-white",
-                          "rounded-md px-3 py-2 text-sm font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
+                        to={item.href}
+                        className={({ isActive }) =>
+                          isActive
+                            ? "bg-cyan-90 text-white rounded-md px-3 py-2 text-sm font-medium"
+                            : "text-gray-300 hover:bg-sky-800 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                        }
                       >
                         {item.name}
-                      </a>
+                      </NavLink>
                     ))}
                   </div>
                 </div>
-
               </div>
               <Menu as="div" className="relative ml-3">
                 <div>
@@ -165,20 +157,18 @@ const Header = () => {
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3">
               {navigation.map((item) => (
-                <Disclosure.Button
+                <NavLink
                   key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                    "block rounded-md px-3 py-2 text-base font-medium"
-                  )}
-                  aria-current={item.current ? "page" : undefined}
+                  to={item.href}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                  }
+                  // aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
-                </Disclosure.Button>
+                </NavLink>
               ))}
             </div>
           </Disclosure.Panel>
