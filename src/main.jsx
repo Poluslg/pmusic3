@@ -14,7 +14,7 @@ import Errorpage from "./Components/Errorpage";
 import Profilesetting from "./Components/Profilesetting";
 import Loginprofile from "./Components/Loginprofile";
 import Playlist from "./Components/Playlist";
-import Library from "./Components/Library";
+import Library from "./Components/Library"
 
 const router = createBrowserRouter([
   {
