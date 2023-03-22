@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useStateProvider } from "../utils/StateProvider";
+import { reducerCases } from "../utils/Constants";
+import Afterlogin from "./Afterlogin";
 
 export default function Login() {
-  const [email, getEmail] = useState("");
-  const [password, getPassword] = useState("");
+  const [{ token }, dispatch] = useStateProvider();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const auth = getAuth();
   const navigate = useNavigate();
-  const [error, seterror] = useState("");
+  const [error, setError] = useState("");
 
   const login = (event) => {
     event.preventDefault();
@@ -22,15 +26,15 @@ export default function Login() {
       })
       .catch((error) => {
         if (error.code === "auth/user-not-found") {
-          seterror("Invalid email address and/or password");
+          setError("Invalid email address and/or password");
         } else if (error.code === "auth/invalid-email") {
-          seterror("Please Enter Email Address");
+          setError("Please enter a valid email address");
         } else if (error.code === "auth/wrong-password") {
-          seterror("Wrong Password");
+          setError("Wrong password");
         } else if (error.code === "auth/internal-error") {
-          seterror("Pleae Enter Password");
+          setError("Please enter a password");
         } else {
-          seterror(error.code);
+          setError(error.code);
         }
       });
   };
@@ -52,16 +56,16 @@ export default function Login() {
   const provider = new GoogleAuthProvider({
     clientId:
       "475738216650-h7cqlhdkietls673qhsos83fimfaa49i.apps.googleusercontent.com",
-    prompt: "one",
+    prompt: "select_account",
   });
 
   const gsing = () => {
     signInWithPopup(auth, provider)
       .then((userCredential) => {
-        const user = GoogleAuthProvider.credentialFromResult(userCredential);
+        const user = userCredential.user;
         localStorage.setItem("token", user.accessToken);
         localStorage.setItem("uid", user.uid);
-        alert("welcome to PMusic");
+        alert("Welcome to PMusic");
         navigate("/afterlogin");
       })
       .catch((error) => {
@@ -69,11 +73,37 @@ export default function Login() {
       });
   };
 
+  const slogin = () => {
+    const clientId = "4ce3666a4df44b2d814fddebfee41d55";
+    const redirectUrl = "http://localhost:5173/login";
+    const apiUrl = "https://accounts.spotify.com/authorize";
+    const scope = [
+      "user-read-email",
+      "user-read-private",
+      "user-read-playback-state",
+      "user-modify-playback-state",
+      "user-read-currently-playing",
+      "user-read-playback-position",
+      "user-top-read",
+      "user-read-recently-played"
+    ];
+    window.location.href = `${apiUrl}?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=${scope.join(" ")}&response_type=token&show_dialog=true`;
+  };
+
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const token = hash.substring(1).split('&')[0].split('=')[1];
+      dispatch({ type: reducerCases.SET_TOKEN, token });
+    }
+  }, [token,dispatch]);
   
+
 
   return (
     <>
-      <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      {token ? <Afterlogin/> : <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
             <img
@@ -161,9 +191,9 @@ export default function Login() {
                 className="googlelogo"
               />
             </div>
-          
+
             <div className="spotifylogoborder">
-              <button type="submit" onClick={gsing}>
+              <button type="submit" onClick={slogin} >
                 Connect with Spotify
               </button>
               <img
@@ -200,7 +230,7 @@ export default function Login() {
             </div>
           </div>
         </div>
-      </div>
+      </div>}
     </>
   );
 }

@@ -15,6 +15,8 @@ import Profilesetting from "./Components/Profilesetting";
 import Loginprofile from "./Components/Loginprofile";
 import Playlist from "./Components/Playlist";
 import Library from "./Components/Library"
+import reducer,{initialState} from "./utils/reducer";
+import { StateProvider } from "./utils/StateProvider";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +43,10 @@ const router = createBrowserRouter([
     path: "/afterlogin",
     element: <Afterlogin />,
   },
+  // {
+  //   path: "/login/afterlogin",
+  //   element: <Afterlogin />,
+  // },
   {
     path: "/policy",
     element: <Policy />,
@@ -70,8 +76,14 @@ const router = createBrowserRouter([
     element: <Library />,
   }
 ]);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+       
+    <StateProvider initialState={initialState} reducer={reducer}>
     <RouterProvider router={router} />
+    </StateProvider>
   </React.StrictMode>
 );
+
+
