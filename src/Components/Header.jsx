@@ -42,8 +42,7 @@ const Header = () => {
           console.error(error);
         });
     };
-
-    if (!localStorage.getItem("token")) {
+    if (!localStorage.getItem("googleToken")) {
       navigate("/login");
     } else {
       getStoredData();
@@ -51,7 +50,8 @@ const Header = () => {
   }, [dbRef, navigate]);
 
   function logOut() {
-    localStorage.removeItem("token");
+    localStorage.removeItem("googleToken");
+    localStorage.removeItem("spotifyToken");
     localStorage.removeItem("uid");
     navigate("/login");
   }
