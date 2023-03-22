@@ -351,7 +351,7 @@ h3.text-base.font-semibold.leading-6.text-gray-900 {
   margin-top: 1rem;
   width: 12rem;
   height: 2.3rem;
-  background-color: #4285f4;
+  background-color: #38e65e;
   border-radius: 9px;
   box-shadow: -1px 2px 6px 0px #888888;
   cursor: pointer;
@@ -363,7 +363,7 @@ h3.text-base.font-semibold.leading-6.text-gray-900 {
   font-size: 0.875rem;
   padding-left: 6px;
   font-weight: 500;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .spotifylogo {
