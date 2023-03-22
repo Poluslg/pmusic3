@@ -69,6 +69,8 @@ export default function Login() {
       });
   };
 
+  
+
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -148,8 +150,7 @@ export default function Login() {
             </div>
           </div>
 
-          <div className="container mx-auto px-4">
-            <h1 className="lgor"> </h1>
+          <div className=" logos">
             <div className="googlelogoborder">
               <button type="submit" onClick={gsing}>
                 Connect with google
@@ -158,6 +159,17 @@ export default function Login() {
                 src="/google.svg"
                 alt="Google-Login"
                 className="googlelogo"
+              />
+            </div>
+          
+            <div className="spotifylogoborder">
+              <button type="submit" onClick={gsing}>
+                Connect with Spotify
+              </button>
+              <img
+                src="/spotify.png"
+                alt="Google-Login"
+                className="spotifylogo"
               />
             </div>
           </div>

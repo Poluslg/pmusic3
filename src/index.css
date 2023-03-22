@@ -298,32 +298,12 @@ h3.text-base.font-semibold.leading-6.text-gray-900 {
 /* ..........................................................................................  */
 
 /* .....................................Start css of login.....................................................  */
-.container {
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
+.logos {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
 
-/* .lgor {
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-} */
-.lgor {
-  border: none;
-  border-top: 1px solid black;
-  text-align: center;
-}
-
-.lgor::before {
-  display: inline-block;
-  position: relative;
-  top: -0.7em;
-  padding: 0 0.5em;
-  background-color: white;
 }
 
 .googlelogoborder {
@@ -354,14 +334,51 @@ h3.text-base.font-semibold.leading-6.text-gray-900 {
   width: 31px;
   height: 24px;
   display: flex;
-  border: 1px solid #ccc, #4285f4;
-  background-color: white;
+  background-color: transparent;
   border-radius: 3px;
 }
 
 .lerror {
   color: rgb(14, 13, 13);
 }
+
+.spotifylogoborder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
+  border: 1px solid #ccc;
+  margin-top: 1rem;
+  width: 12rem;
+  height: 2.3rem;
+  background-color: #4285f4;
+  border-radius: 9px;
+  box-shadow: -1px 2px 6px 0px #888888;
+  cursor: pointer;
+}
+
+.spotifylogoborder button {
+  margin-bottom: 11px;
+  padding-top: 10px;
+  font-size: 0.875rem;
+  padding-left: 6px;
+  font-weight: 500;
+  color: white;
+}
+
+.spotifylogo {
+  width: 26px;
+  height: 24px;
+  display: flex;
+  border: 1px solid #ccc, #4285f4;
+  background-color: transparent;
+  border-radius: 3px;
+}
+
+.lerror {
+  color: rgb(14, 13, 13);
+}
+
 
 /* .....................................END css of login.....................................................  */
 
