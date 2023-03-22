@@ -39,11 +39,7 @@ export default function Login() {
       });
   };
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("token")) {
-  //     navigateTo("/afterlogin");
-  //   }
-  // }, [navigate]);
+
 
   const cancel = () => {
     navigateTo("/");

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { reducerCases } from "../utils/Constants";
 import { useStateProvider } from "../utils/StateProvider";
-
+import styled from "styled-components";
 
 export default function Playlists() {
   const [{ token, playlists }, dispatch] = useStateProvider();
@@ -17,17 +17,21 @@ export default function Playlists() {
           },
         }
       );
-      const{ items } = response.data;
-      const playlists = items.map(({name,id})=>{return{name,id};
-    });
-    dispatch({type:reducerCases.SET_PLAYLISTS,playlists});
-
+      const { items } = response.data;
+      const playlists = items.map(({ name, id }) => {
+        return { name, id };
+      });
+      dispatch({ type: reducerCases.SET_PLAYLISTS, playlists });
     };
     getPlaylistData();
-},[token,dispatch]);
-return (
+  }, [token, dispatch]);
+  const changeCurrentPlaylist = (selectedPlaylistId) => {
+    dispatch({ type: reducerCases.SET_PLAYLIST_ID, selectedPlaylistId });
+  };
+
+  return (
     <Container>
-      <ul>
+           <ul>
         {playlists.map(({ name, id }) => {
           return (
             <li key={id} onClick={() => changeCurrentPlaylist(id)}>
@@ -37,9 +41,9 @@ return (
         })}
       </ul>
     </Container>
+   
   );
 }
-
 const Container = styled.div`
   color: #b3b3b3;
   height: 100%;
@@ -56,7 +60,7 @@ const Container = styled.div`
     &::-webkit-scrollbar {
       width: 0.7rem;
       &-thumb {
-        background-color: rgba(255, 255, 255, 0.6);
+        background-color: rgba(55, 55, 55, 0.6);
       }
     }
     li {
@@ -68,6 +72,3 @@ const Container = styled.div`
     }
   }
 `;
-
-
-
