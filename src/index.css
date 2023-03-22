@@ -415,3 +415,13 @@ h3.text-base.font-semibold.leading-6.text-gray-900 {
 
 /* .................................................................... */
 /* ..................................Start of afterlogin.................................. */
+.Container{
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 85vw 15vh;
+  
+}
+
+/* ..................................END of afterlogin.................................. */
