@@ -22,7 +22,7 @@ export default function Login() {
         const user = userCredential.user;
         localStorage.setItem("token", user.accessToken);
         localStorage.setItem("uid", user.uid);
-        slogin();
+        
       })
       .catch((error) => {
         if (error.code === "auth/user-not-found") {
@@ -194,7 +194,7 @@ export default function Login() {
                 />
               </div>
 
-              {/* <div className="spotifylogoborder">
+              <div className="spotifylogoborder">
                 <button type="submit" onClick={slogin}>
                   Connect with Spotify
                 </button>
@@ -203,7 +203,7 @@ export default function Login() {
                   alt="Google-Login"
                   className="spotifylogo"
                 />
-              </div> */}
+              </div>
             </div>
             <div>
               <button

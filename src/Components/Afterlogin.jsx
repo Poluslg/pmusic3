@@ -18,9 +18,9 @@ export default function Afterlogin() {
     bodyRef.current.scrollTop >= 30
       ? setNavBackground(true)
       : setHeaderBackground(false);
-    bodyRef.current.scrollTop >= 268
-      ? setheaderBackground(true)
-      : setheaderBackground(false);
+    // bodyRef.current.scrollTop >= 268
+    //   ? setheaderBackground(true)
+    //   : setheaderBackground(false);
   }
   useEffect(() => {
     const getUserInfo = async () => {
