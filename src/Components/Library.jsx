@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from './Header'
+import Playlists from './Playlists'
 
 function Library() {
   return (
@@ -18,6 +19,7 @@ function Library() {
               <h6>Library</h6>
           </div>
         </main>
+        <Playlists/>
       </div>
     </>
   )

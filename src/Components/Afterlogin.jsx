@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Body from './Body'
 import Footer from './Footer'
-import Sheader from './Sheader'
+import Header from './Header'
 import Sidebar from './Sidebar'
 import styled from 'styled-components';
 import { useStateProvider } from '../utils/StateProvider'
@@ -45,7 +45,7 @@ export default function Afterlogin() {
       <div className="spotify__body" >
         <Sidebar />
         <div className="body"ref={bodyRef} onScroll={bodyScrolled} >
-          <Sheader navBackground={navBackground}  />
+          <Header navBackground={navBackground}  />
           <div className="body__contents">
             <Body  headerBackground={headerBackground} />
           </div>

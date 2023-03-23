@@ -7,12 +7,13 @@ import styled from "styled-components";
 export default function Playlists() {
   const [{ token, playlists }, dispatch] = useStateProvider();
   useEffect(() => {
+    const spotifyToken = localStorage.getItem("spotifyToken");
     const getPlaylistData = async () => {
       const response = await axios.get(
         "https://api.spotify.com/v1/me/playlists",
         {
           headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + spotifyToken,
             "Content-Type": "application/json",
           },
         }

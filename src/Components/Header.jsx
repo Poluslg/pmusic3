@@ -4,6 +4,8 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment, useEffect } from "react";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { useNavigate, Link, NavLink } from "react-router-dom";
+import { IoLibrary } from 'react-icons/io5';
+import { MdHomeFilled, MdSearch } from 'react-icons/md';
 
 const user = {
   name: "",
